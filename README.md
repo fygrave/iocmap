@@ -18,11 +18,11 @@ process of executable name, and so on.
 
 The output of indicators of compromise can be produced in
 form of:
- -- snort rule(s)
- -- Yara rule(s)
- -- OpenIOC documents
- -- CyBOX
- -- Esper rule(s)
+ ..* snort rule(s)
+ ..* Yara rule(s)
+ ..* OpenIOC documents
+ ..* CyBOX
+ ..* Esper rule(s)
 
 
 
