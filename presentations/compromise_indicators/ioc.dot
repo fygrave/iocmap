@@ -1,0 +1,30 @@
+digraph ioc {
+        scmap = true;
+        nodesep = 0.09;
+        //rankdir=LR;
+        node [style=filled;
+              shape=record;
+              ];
+
+        initial->ioccreate;
+        ioccreate->iocdeploy;
+        iocdeploy->identifycompromise;
+        identifycompromise->forensicscollection;
+        forensicscollection->analyze;
+        analyze->newioc;
+  //      newioc->repeat;
+    //    repeat->ioccreate;
+    newioc->ioccreate [ label="rinse and repeat"];
+    
+//        repeat [shape=record;   label="Rinse and Repeat"];
+        initial [ label="Initial Detection"];
+        ioccreate [ label="create IOC for host/network monitoring"];
+        iocdeploy [label="deploy IOCs to IDS/HIDS"];
+        identifycompromise [label="identify affected systems"];
+        forensicscollection [ label="forensic data aquisition"];
+        analyze [ label="Analysis/FP/Reverse Engineering"];
+        newioc [label="patterns for new IOCs"];
+        
+        }
+
+        
