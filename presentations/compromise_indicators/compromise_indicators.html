@@ -1,151 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>(Incident Response tactics with Compromise Indicators)</title>
-<meta name="author" content="(Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin)"/>
-<link rel="stylesheet" href="./reveal.js/css/reveal.min.css"/>
-<link rel="stylesheet" href="./reveal.js/css/theme/moon.css" id="theme"/>
-
-<link rel="stylesheet" href="./reveal.js/css/print/pdf.css" type="text/css" media="print"/>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<title>Incident Response tactics with Compromise Indicators</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-03-23 23:16:55 MSK"/>
+<meta name="author" content="Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 </head>
 <body>
-ox-reveal-jekyll-preamble
-<div class="reveal">
-<div class="slides">
-<section>
-<h1>Incident Response tactics with Compromise Indicators</h1>
-<h2>Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin</h2>
-<h2><a href="mailto:voffchik@gmail.com">voffchik@gmail.com</a></h2>
-<h2></h2></section>
-<section>
-<h2>Table of Contents</h2><ul>
-<li>
-<a href="#sec-1">О　теме　по　русски</a>
-</li>
-<li>
-<a href="#sec-2">Basics</a>
-</li>
-<li>
-<a href="#sec-3">IOC workflow</a>
-</li>
-<li>
-<a href="#sec-4">Standards: OpenIOC</a>
-</li>
-<li>
-<a href="#sec-5">Standards: Mitre</a>
-</li>
-<li>
-<a href="#sec-6">Tools</a>
-</li>
-<li>
-<a href="#sec-7">Online Sharing of IOCs</a>
-</li>
-<li>
-<a href="#sec-8">Sharing IOCS</a>
-</li>
-<li>
-<a href="#sec-9">IOCs composites</a>
-</li>
-<li>
-<a href="#sec-10">Challenges</a>
-</li>
-<li>
-<a href="#sec-11">Challenges</a>
-</li>
-<li>
-<a href="#sec-12">An Example</a>
-</li>
-<li>
-<a href="#sec-13">Indicators</a>
-</li>
-<li>
-<a href="#sec-14">Good or Bad?</a>
-</li>
-<li>
-<a href="#sec-15">It really depends on context</a>
-</li>
-<li>
-<a href="#sec-16">Tools for Dynamic Detection of IOC</a>
-</li>
-<li>
-<a href="#sec-17">Platforms useful for IOC</a>
-</li>
+<div id="content">
+
+<h1 class="title">Incident Response tactics with Compromise Indicators</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">О　теме　по　русски </a></li>
+<li><a href="#sec-2">Basics </a></li>
+<li><a href="#sec-3">IOC workflow </a></li>
+<li><a href="#sec-4">Standards: OpenIOC </a></li>
+<li><a href="#sec-5">Standards: Mitre </a></li>
+<li><a href="#sec-6">Tools </a></li>
+<li><a href="#sec-7">Online Sharing of IOCs </a></li>
+<li><a href="#sec-8">Sharing IOCS </a></li>
+<li><a href="#sec-9">IOCs composites </a></li>
+<li><a href="#sec-10">Challenges </a></li>
+<li><a href="#sec-11">Challenges </a></li>
+<li><a href="#sec-12">An Example </a></li>
+<li><a href="#sec-13">Indicators </a></li>
+<li><a href="#sec-14">Good or Bad? </a></li>
+<li><a href="#sec-15">It really depends on context </a></li>
+<li><a href="#sec-16">Tools for Dynamic Detection of IOC </a></li>
+<li><a href="#sec-17">Tools for Dynamic Detection </a></li>
+<li><a href="#sec-18">Sources of IOCs </a></li>
+<li><a href="#sec-19">Platforms useful for IOC </a></li>
+<li><a href="#sec-20">Mining IOCs from your own data </a></li>
+<li><a href="#sec-21">Example </a></li>
+<li><a href="#sec-22">Use YARA, or tune your own tools </a></li>
 </ul>
-</section>
+</div>
+</div>
 
-<section>
-<section id="sec-1" >
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">О　теме　по　русски </h2>
+<div class="outline-text-2" id="text-1">
 
-<h2>О　теме　по　русски</h2>
-<p>
-Практическое применение статистических и временных индикаторов для
+<p>Практическое применение статистических и временных индикаторов для
 выявления и расследования инцидентов ИБ
 </p>
-
 <p>
 поговорим　о　том　что　такое　индикаторы　　компромисов　и　с　чем　их　едять.
-</p>
-</section>
+</p></div>
 
-</section>
-<section>
-<section id="sec-2" >
+</div>
 
-<h2>Basics</h2>
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2">Basics </h2>
+<div class="outline-text-2" id="text-2">
+
+
 <p>
 <b>Indicators of Compromise</b>
 </p>
-
 <p>
 Indicator of compromise (IOC) in computer forensics is an artifact
 observed on network or in operating system that with high confidence
 indicates a computer intrusion.
 </p>
-
 <p>
-<a href="http://en.wikipedia.org/wiki/Indicator_of_compromise">http://en.wikipedia.org/wiki/Indicator_of_compromise</a>
+<a href="http://en.wikipedia.org/wiki/Indicator_of_compromise">http://en.wikipedia.org/wiki/Indicator<sub>of</sub><sub>compromise</sub></a>
 </p>
-</section>
 
 
-</section>
-<section>
-<section id="sec-3" >
+</div>
 
-<h2>IOC workflow</h2>
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3">IOC workflow </h2>
+<div class="outline-text-2" id="text-3">
+
+
+
 <p>
 A typical flow with Indicators of Compromise allows
 to integrate dynamic threat intelligence into detection 
 process:
 </p>
-
-<img src="images/ioc.png" alt="ioc.png" />
-
+<p>
+<img src="images/ioc.png"  alt="images/ioc.png" />
+</p>
 <p>
 source: Sophisticated indicators for the modern threat landscape, 2012
 paper
 </p>
-</section>
-</section>
-<section>
-<section id="sec-4" >
+</div>
 
-<h2>Standards: OpenIOC</h2>
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4">Standards: OpenIOC </h2>
+<div class="outline-text-2" id="text-4">
+
+
 <p>
 OpenIOC - Mandiant-backed effort for unform representation of IOC
 (now FireEye)
 <a href="http://www.openioc.org/">http://www.openioc.org/</a>
-<img src="images/zeus-ioc.png" alt="zeus-ioc.png" />
+<img src="images/zeus-ioc.png"  alt="images/zeus-ioc.png" />
 </p>
-</section>
-</section>
-<section>
-<section id="sec-5" >
+</div>
 
-<h2>Standards: Mitre</h2>
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5">Standards: Mitre </h2>
+<div class="outline-text-2" id="text-5">
+
+
 <p>
 Mitre CybOX:
 <a href="http://cybox.mitre.org/">http://cybox.mitre.org/</a>
@@ -158,198 +192,251 @@ Mitre STIX:
 Mitre TAXII
 <a href="http://taxii.mitre.org/">http://taxii.mitre.org/</a>
 </p>
-</section>
-</section>
-<section>
-<section id="sec-6" >
+</div>
 
-<h2>Tools</h2>
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6">Tools </h2>
+<div class="outline-text-2" id="text-6">
+
+
 <p>
 <a href="https://github.com/STIXProject/openioc-to-stix">https://github.com/STIXProject/openioc-to-stix</a>
 <a href="https://github.com/tklane/openiocscripts">https://github.com/tklane/openiocscripts</a> 
 </p>
-
 <p>
 Mantis Threat Intelligence Framework
- <a href="https://github.com/siemens/django-mantis.git">https://github.com/siemens/django-mantis.git</a>
+<a href="https://github.com/siemens/django-mantis.git">https://github.com/siemens/django-mantis.git</a>
 Mantis supports STIX/CybOX/IODEF/OpenIOC etc via
 importers: <a href="https://github.com/siemens/django-mantis-openioc-importer">https://github.com/siemens/django-mantis-openioc-importer</a>
 </p>
-
 
 <p>
 Search splunk data for IOC indicators:
 <a href="https://github.com/technoskald/splunk-search">https://github.com/technoskald/splunk-search</a>
 </p>
-</section>
-</section>
-<section>
-<section id="sec-7" >
+</div>
 
-<h2>Online Sharing of IOCs</h2>
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7">Online Sharing of IOCs </h2>
+<div class="outline-text-2" id="text-7">
+
+
 <p>
 <a href="http://iocbucket.com/">http://iocbucket.com/</a>
 </p>
+<p>
+<img src="images/iocbucket.png"  alt="images/iocbucket.png" />
+</p>
+</div>
 
-<img src="images/iocbucket.png" alt="iocbucket.png" />
-</section>
-</section>
-<section>
-<section id="sec-8" >
+</div>
 
-<h2>Sharing IOCS</h2>
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8">Sharing IOCS </h2>
+<div class="outline-text-2" id="text-8">
+
+
 <p>
 Policies on sharing IOCs:
 </p>
+<ul>
+<li>
+what to be shared/can be shared
+</li>
+<li>
+who to share with
+</li>
+<li>
+when to share
 
-<ul class="org-ul">
-<li>what to be shared/can be shared
-</li>
-<li>who to share with
-</li>
-<li>when to share
 </li>
 </ul>
-</section>
-</section>
-<section>
-<section id="sec-9" >
+</div>
 
-<h2>IOCs composites</h2>
-<p>
-Where to look for IOCs:
-</p>
-<ul class="org-ul">
-<li>Outbound Network Traffic
+</div>
+
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9">IOCs composites </h2>
+<div class="outline-text-2" id="text-9">
+
+<p>Where to look for IOCs:
+</p><ul>
+<li>
+Outbound Network Traffic
 </li>
-<li>User Activities/Failed Logins
+<li>
+User Activities/Failed Logins
 </li>
-<li>User profile folders
+<li>
+User profile folders
 </li>
-<li>Administrative Access
+<li>
+Administrative Access
 </li>
-<li>Access from unsual IP addresses
+<li>
+Access from unsual IP addresses
 </li>
-<li>Database IO: excessive READs
+<li>
+Database IO: excessive READs
 </li>
-<li>Size of responses of web pages 
+<li>
+Size of responses of web pages 
 </li>
-<li>Unusual access to particular files within Web Application (backdoor)
+<li>
+Unusual access to particular files within Web Application (backdoor)
 </li>
-<li>Unusual port/protocol connections
+<li>
+Unusual port/protocol connections
 </li>
-<li>DNS and HTTP traffic requests
+<li>
+DNS and HTTP traffic requests
 </li>
-<li>Suspicious Scripts, Executables and Data Files
+<li>
+Suspicious Scripts, Executables and Data Files
+
 </li>
 </ul>
-</section>
-</section>
-<section>
-<section id="sec-10" >
+</div>
 
-<h2>Challenges</h2>
-<p>
-Why we need IOCs? because it makes it easier to
+</div>
+
+<div id="outline-container-10" class="outline-2">
+<h2 id="sec-10">Challenges </h2>
+<div class="outline-text-2" id="text-10">
+
+<p>Why we need IOCs? because it makes it easier to
 systematically describe knowledge about breaches.
 </p>
-
-<ul class="org-ul">
-<li>Identifying intrusions is hard
+<ul>
+<li>
+Identifying intrusions is hard
 </li>
-<li>Unfair game:
-<ul class="org-ul">
-<li>defender should protect all the assets
+<li>
+Unfair game:
+<ul>
+<li>
+defender should protect all the assets
 </li>
-<li>attacker only needs to 'poop' one system.
-</li>
-</ul>
-</li>
-<li>Identifying targeted, organized intrusions is even harder
-</li>
-<li>Minor anomalous events are important when put together
-</li>
-<li>Seeing global picture is a mast
-</li>
-<li>Details matter
-</li>
-<li>Attribution is hard
+<li>
+attacker only needs to 'poop' one system.
 </li>
 </ul>
-</section>
-</section>
-<section>
-<section id="sec-11" >
+</li>
+<li>
+Identifying targeted, organized intrusions is even harder
+</li>
+<li>
+Minor anomalous events are important when put together
+</li>
+<li>
+Seeing global picture is a mast
+</li>
+<li>
+Details matter
+</li>
+<li>
+Attribution is hard
 
-<h2>Challenges</h2>
-<p>
-<b>All networks are compromised</b>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11">Challenges </h2>
+<div class="outline-text-2" id="text-11">
+
+<p><b>All networks are compromised</b>
 </p>
-
 
 <p>
 The difference between a good security team and a bad security team is
 that with a bad security team you will never know that you've been
 compromised.
 </p>
-</section>
 
-</section>
-<section>
-<section id="sec-12" >
+</div>
 
-<h2>An Example</h2>
-<p>
-A Network compromise case study:
-</p>
-<ul class="org-ul">
-<li>Attackers broke via a web vuln.
+</div>
+
+<div id="outline-container-12" class="outline-2">
+<h2 id="sec-12">An Example </h2>
+<div class="outline-text-2" id="text-12">
+
+<p>A Network compromise case study:
+</p><ul>
+<li>
+Attackers broke via a web vuln.
 </li>
-<li>Attackers gained local admin access
+<li>
+Attackers gained local admin access
 </li>
-<li>Attackers created a local user
+<li>
+Attackers created a local user
 </li>
-<li>Attackers started probing other machines for default user ids
+<li>
+Attackers started probing other machines for default user ids
 </li>
-<li>Attackers launched tunneling tools – connecting back to C2
+<li>
+Attackers launched tunneling tools – connecting back to C2
 </li>
-<li>Attackers installed RATs to maintain access
+<li>
+Attackers installed RATs to maintain access
+
 </li>
 </ul>
-</section>
-</section>
-<section>
-<section id="sec-13" >
+</div>
 
-<h2>Indicators</h2>
+</div>
+
+<div id="outline-container-13" class="outline-2">
+<h2 id="sec-13">Indicators </h2>
+<div class="outline-text-2" id="text-13">
+
+
 <p>
 So what are the compromise indicators here?
 </p>
+<ul>
+<li>
+Where did attackers come from? (IP)
+</li>
+<li>
+What vulnerability was exploited? (pattern)
+</li>
+<li>
+What web backdoor was used? (pattern, hash)
+</li>
+<li>
+What tools were uploaded? (hashes)
+</li>
+<li>
+What users were created locally? (username)
+</li>
+<li>
+What usernames were probed on other machines
 
-<ul class="org-ul">
-<li>Where did attackers come from? (IP)
-</li>
-<li>What vulnerability was exploited? (pattern)
-</li>
-<li>What web backdoor was used? (pattern, hash)
-</li>
-<li>What tools were uploaded? (hashes)
-</li>
-<li>What users were created locally? (username)
-</li>
-<li>What usernames were probed on other machines
+
 </li>
 </ul>
-</section>
+</div>
 
-</section>
-<section>
-<section id="sec-14" >
+</div>
 
-<h2>Good or Bad?</h2>
-<div class="org-src-container">
+<div id="outline-container-14" class="outline-2">
+<h2 id="sec-14">Good or Bad? </h2>
+<div class="outline-text-2" id="text-14">
 
-<pre class="src src-sh">File Name                       : RasTls.exe
+
+
+
+<pre class="example">
+File Name                       : RasTls.exe
 File Size                       : 105 kB
 File Modification Date/Time     : 2009:02:09 19:42:05+08:00
 File Type                       : Win32 EXE
@@ -377,120 +464,254 @@ File Description                : Symantec 802.1x Supplicant
 File Version                    : 11.0.4010.7
 Internal Name                   : dot1xtray
 </pre>
+
+
+
+
 </div>
-</section>
-</section>
-<section>
-<section id="sec-15" >
 
-<h2>It really depends on context</h2>
-<div class="org-src-container">
+</div>
 
-<pre class="src src-sh">RasTls.DLL 
+<div id="outline-container-15" class="outline-2">
+<h2 id="sec-15">It really depends on context </h2>
+<div class="outline-text-2" id="text-15">
+
+
+
+
+
+<pre class="example">
+RasTls.DLL 
 RasTls.DLL.msc
 RasTls.exe
+
 </pre>
-</div>
+
+
+
 
 <p>
 <a href="http://msdn.microsoft.com/en-us/library/ms682586(v=VS.85).aspx">http://msdn.microsoft.com/en-us/library/ms682586(v=VS.85).aspx</a>
 </p>
-
 <p>
 <b>Dynamic-Link Library Search Order</b>
 </p>
-
-<img src="images/pantsdown.jpg" alt="pantsdown.jpg" />
-</section>
-
-
-
-</section>
-<section>
-<section id="sec-16" >
-
-<h2>Tools for Dynamic Detection of IOC</h2>
-<ul class="org-ul">
-<li>Snort
-</li>
-<li>Yara + yara-enabled tools
-</li>
-<li>Moloch
-</li>
-</ul>
-</section>
-
-</section>
-<section>
-<section id="sec-17" >
-
-<h2>Platforms useful for IOC</h2>
-<ul class="org-ul">
-<li>passive HTTP (keep your data recorded)
-</li>
-<li>passive DNS
-</li>
-</ul>
-
 <p>
-ability to mine traffic or patterns from the past
-based on IOC similarity
+<img src="images/pantsdown.jpg"  alt="images/pantsdown.jpg" />
 </p>
 
+
+
+</div>
+
+</div>
+
+<div id="outline-container-16" class="outline-2">
+<h2 id="sec-16">Tools for Dynamic Detection of IOC </h2>
+<div class="outline-text-2" id="text-16">
+
+
+<ul>
+<li>
+Snort
+</li>
+<li>
+Yara + yara-enabled tools
+</li>
+<li>
+Moloch
+</li>
+<li>
+Splunk/Log search
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-17" class="outline-2">
+<h2 id="sec-17">Tools for Dynamic Detection </h2>
+<div class="outline-text-2" id="text-17">
+
+
+<ul>
+<li>
+Moloch
+<ul>
+<li>
+Moloch supports Yara (IOCs can be directly applied)
+</li>
+<li>
+Moloch has tagger plugin:
+
+</li>
+</ul>
+</li>
+</ul>
+
+
+<pre class="example">
+# tagger.so
+# provides ability to import text files with IP and/or hostnames 
+# into a sensor that would cause autotagging of all matching sessions
+plugins=tagger.so
+taggerIpFiles=blacklist,tag,tag,tag...
+taggerDomainFiles=domainbasedblacklists, tag, tag, tag
+
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-18" class="outline-2">
+<h2 id="sec-18">Sources of IOCs </h2>
+<div class="outline-text-2" id="text-18">
+
+
+<p>
+<a href="http://iocbucket.com">http://iocbucket.com</a>
+</p>
+<p>
+<a href="https://zeustracker.abuse.ch/blocklist.php?download=ipblocklist">https://zeustracker.abuse.ch/blocklist.php?download=ipblocklist</a>
+</p>
+<p>
+<a href="https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist">https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist</a>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-19" class="outline-2">
+<h2 id="sec-19">Platforms useful for IOC </h2>
+<div class="outline-text-2" id="text-19">
+
+
+<ul>
+<li>
+passive HTTP (keep your data recorded)
+</li>
+<li>
+passive DNS
+
+</li>
+</ul>
+
+<p>ability to mine traffic or patterns from the past
+based on IOC similarity
+</p>
 <p>
 <b>show me all the packets similar to this IOC</b>
 </p>
-
 <p>
 We implemented a whois service for IOC look-ups
 </p>
-<div class="org-src-container">
 
-<pre class="src src-sh">whois -h ioc.host.com   attribute:value+attribute:value
+
+<pre class="example">
+whois -h ioc.host.com   attribute:value+attribute:value
+
 </pre>
+
+
+
 </div>
-</section>
-</section>
+
+</div>
+
+<div id="outline-container-20" class="outline-2">
+<h2 id="sec-20">Mining IOCs from your own data </h2>
+<div class="outline-text-2" id="text-20">
+
+<ul>
+<li>
+find and investigate incident
+</li>
+<li>
+Or even read paper
+</li>
+<li>
+determine indicators and test it in YOUR Environment
+</li>
+<li>
+use new indicators in the future
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-21" class="outline-2">
+<h2 id="sec-21">Example </h2>
+<div class="outline-text-2" id="text-21">
+
+<p>If event chain leads to compromise
+</p>
+
+
+<pre class="example">http:// liapolasens[.]info/indexm.html
+
+http:// liapolasens[.]info/counter.php?t=f&amp;v=win%2011,7,700,169&amp;a=true
+
+http:// liapolasens[.]info/354RIcx
+
+http:// liapolasens[.]info/054RIcx
+
+</pre>
+
+
+
+<p>
+What to do?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-22" class="outline-2">
+<h2 id="sec-22">Use YARA, or tune your own tools </h2>
+<div class="outline-text-2" id="text-22">
+
+
+
+
+<pre class="example">rule susp_params_in_url_kind_of_fileless_bot_drive_by
+{
+        meta:
+        date = "oct 2013"
+        description = "Landing hxxp://jdatastorelame.info/indexm.html  04.10.2013 13:14  108.62.112.84  "  
+        description1 =  " Java Sploit hxxp://jdatastorelame.info/054RIwj     "
+        
+    
+    strings:
+        $string0 = "http"
+        $string1 = "indexm.html"
+        $string2 = "054RI"
+        
+        
+    
+    condition:
+        all of them
+}
+</pre>
+
+
+
 </div>
 </div>
-<script src="./reveal.js/lib/js/head.min.js"></script>
-<script src="./reveal.js/js/reveal.min.js"></script>
-<script>
-
-        		// Full list of configuration options available here:
-        		// https://github.com/hakimel/reveal.js#configuration
-        		Reveal.initialize({
-        			controls: true,
-        			progress: true,
-        			history: false,
-        			center: true,
-        			rollingLinks: true,
-        			keyboard: true,
-        			overview: true,
-        			width: 1200, // slide width
-        			height: 800, // slide height
-        			margin: 0.10, // slide margin
-        			minScale: 0.50, // slide minimum scaling factor
-        			maxScale: 2.50, // slide maximum scaling factor
-
-
-        			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        			transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
-        			transitionSpeed: 'default',
-
-        			// Optional libraries used to extend on reveal.js
-        			dependencies: [
-        				{ src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } }
-        				,{ src: './reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } }
-        				,{ src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } }
-        				,{ src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-        				,{ src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }
-        				,{ src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-        				// { src: './reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-        				// { src: './reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-         				
-        			]
-        		});
-</script>
+<div id="postamble">
+<p class="author"> Author: Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin
+<a href="mailto:">&lt;&gt;</a>
+</p>
+<p class="date"> Date: 2014-03-23 23:16:55 MSK</p>
+<p class="creator">HTML generated by org-mode 6.33x in emacs 23</p>
+</div>
+</div>
 </body>
 </html>

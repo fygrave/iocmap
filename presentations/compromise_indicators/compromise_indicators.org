@@ -1,6 +1,6 @@
 #+Title: Incident Response tactics with Compromise Indicators
 #+Author: Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin
-#+Email: voffchik@gmail.com
+#+Email:
 #+EPRESENT_FRAME_LEVEL: 1
 #+FILETAGS:
 #+LATEX_OPTIONS: 
@@ -249,4 +249,45 @@ We implemented a whois service for IOC look-ups
 
 whois -h ioc.host.com   attribute:value+attribute:value
 
+#+END_SRC
+* Mining IOCs from your own data
+- find and investigate incident
+- Or even read paper
+- determine indicators and test it in YOUR Environment
+- use new indicators in the future
+
+* Example 
+If event chain leads to compromise
+#+BEGIN_SRC sh
+http:// liapolasens[.]info/indexm.html
+
+http:// liapolasens[.]info/counter.php?t=f&v=win%2011,7,700,169&a=true
+
+http:// liapolasens[.]info/354RIcx
+
+http:// liapolasens[.]info/054RIcx
+
+#+END_SRC
+What to do?
+
+* Use YARA, or tune your own tools
+#+BEGIN_SRC sh
+rule susp_params_in_url_kind_of_fileless_bot_drive_by
+{
+	meta:
+        date = "oct 2013"
+        description = "Landing hxxp://jdatastorelame.info/indexm.html  04.10.2013 13:14  108.62.112.84  "  
+        description1 =  " Java Sploit hxxp://jdatastorelame.info/054RIwj     "
+        
+    
+    strings:
+	$string0 = "http"
+	$string1 = "indexm.html"
+	$string2 = "054RI"
+        
+        
+    
+    condition:
+    	all of them
+}
 #+END_SRC
