@@ -3,10 +3,22 @@
 #+Email:
 #+EPRESENT_FRAME_LEVEL: 1
 #+FILETAGS:
-#+LATEX_OPTIONS: 
+#+LATEX_OPTIONS:
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
 #+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
 #+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
 #+OPTIONS: reveal_width:1200 reveal_height:800
+#+LANGUAGE: en
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER:     colorlinks,%
+#+LATEX_HEADER:     citecolor=black,%
+#+LATEX_HEADER:     filecolor=black,%
+#+LATEX_HEADER:     linkcolor=blue,%
+#+LATEX_HEADER:     urlcolor=black
+#+LATEX_HEADER: }
+#+OPTIONS:    H:3  toc:t \n:nil ::t |:t ^:t -:t f:t *:t tex:t d:(HIDE) tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 0.5
 #+REVEAL_MAX_SCALE: 2.5
@@ -16,11 +28,6 @@
 #+REVEAL_PREAMBLE: ox-reveal-jekyll-preamble
 #+EPRESENT_FRAME_LEVEL: 1
 
-* О　теме　по　русски
-Практическое применение статистических и временных индикаторов для
-выявления и расследования инцидентов ИБ
-
-поговорим　о　том　что　такое　индикаторы　　вторжений　и　с　чем　их　едять.
 * Basics
 
 *Indicators of Compromise*
