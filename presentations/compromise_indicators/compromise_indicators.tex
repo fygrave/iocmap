@@ -1,0 +1,347 @@
+% Created 2014-03-24 Mon 19:22
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,%
+citecolor=black,%
+filecolor=black,%
+linkcolor=blue,%
+urlcolor=black
+}
+\author{Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin}
+\date{\today}
+\title{Incident Response tactics with Compromise Indicators}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.3.50.1 (Org mode 8.2.5c)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section*{Basics}
+\label{sec-1}
+
+\textbf{Indicators of Compromise}
+
+Indicator of compromise (IOC) in computer forensics is an artifact
+observed on network or in operating system that with high confidence
+indicates a computer intrusion.
+
+\url{http://en.wikipedia.org/wiki/Indicator_of_compromise}
+
+
+\section*{IOC workflow}
+\label{sec-2}
+
+
+A typical flow with Indicators of Compromise allows
+to integrate dynamic threat intelligence into detection 
+process:
+
+\includegraphics[width=.9\linewidth]{images/ioc.png}
+
+source: Sophisticated indicators for the modern threat landscape, 2012
+paper
+\section*{Standards: OpenIOC}
+\label{sec-3}
+
+OpenIOC - Mandiant-backed effort for unform representation of IOC
+(now FireEye)
+\url{http://www.openioc.org/}
+\includegraphics[width=.9\linewidth]{images/zeus-ioc.png}
+\section*{Standards: Mitre}
+\label{sec-4}
+
+Mitre CybOX:
+\url{http://cybox.mitre.org/}
+\url{https://github.com/CybOXProject/Tools}
+\url{https://github.com/CybOXProject/openioc-to-cybox}
+Mitre CAPEC:
+\url{http://capec.mitre.org/}
+Mitre STIX:
+\url{http://stix.mitre.org/}
+Mitre TAXII
+\url{http://taxii.mitre.org/}
+\section*{Tools}
+\label{sec-5}
+
+\url{https://github.com/STIXProject/openioc-to-stix}
+\url{https://github.com/tklane/openiocscripts} 
+
+Mantis Threat Intelligence Framework
+ \url{https://github.com/siemens/django-mantis.git}
+Mantis supports STIX/CybOX/IODEF/OpenIOC etc via
+importers: \url{https://github.com/siemens/django-mantis-openioc-importer}
+
+
+Search splunk data for IOC indicators:
+\url{https://github.com/technoskald/splunk-search}
+\section*{Online Sharing of IOCs}
+\label{sec-6}
+
+\url{http://iocbucket.com/}
+
+\includegraphics[width=.9\linewidth]{images/iocbucket.png}
+\section*{Sharing IOCS}
+\label{sec-7}
+
+Policies on sharing IOCs:
+
+\begin{itemize}
+\item what to be shared/can be shared
+\item who to share with
+\item when to share
+\end{itemize}
+\section*{IOCs composites}
+\label{sec-8}
+Where to look for IOCs:
+\begin{itemize}
+\item Outbound Network Traffic
+\item User Activities/Failed Logins
+\item User profile folders
+\item Administrative Access
+\item Access from unsual IP addresses
+\item Database IO: excessive READs
+\item Size of responses of web pages
+\item Unusual access to particular files within Web Application (backdoor)
+\item Unusual port/protocol connections
+\item DNS and HTTP traffic requests
+\item Suspicious Scripts, Executables and Data Files
+\end{itemize}
+\section*{Challenges}
+\label{sec-9}
+Why we need IOCs? because it makes it easier to
+systematically describe knowledge about breaches.
+
+\begin{itemize}
+\item Identifying intrusions is hard
+\item Unfair game:
+\begin{itemize}
+\item defender should protect all the assets
+\item attacker only needs to 'poop' one system.
+\end{itemize}
+\item Identifying targeted, organized intrusions is even harder
+\item Minor anomalous events are important when put together
+\item Seeing global picture is a mast
+\item Details matter
+\item Attribution is hard
+\end{itemize}
+\section*{Challenges}
+\label{sec-10}
+\textbf{All networks are compromised}
+
+
+The difference between a good security team and a bad security team is
+that with a bad security team you will never know that you've been
+compromised.
+
+\section*{An Example}
+\label{sec-11}
+A Network compromise case study:
+\begin{itemize}
+\item Attackers broke via a web vuln.
+\item Attackers gained local admin access
+\item Attackers created a local user
+\item Attackers started probing other machines for default user ids
+\item Attackers launched tunneling tools – connecting back to C2
+\item Attackers installed RATs to maintain access
+\end{itemize}
+\section*{Indicators}
+\label{sec-12}
+
+So what are the compromise indicators here?
+
+\begin{itemize}
+\item Where did attackers come from? (IP)
+\item What vulnerability was exploited? (pattern)
+\item What web backdoor was used? (pattern, hash)
+\item What tools were uploaded? (hashes)
+\item What users were created locally? (username)
+\item What usernames were probed on other machines
+\end{itemize}
+
+\section*{Good or Bad?}
+\label{sec-13}
+\begin{verbatim}
+File Name                       : RasTls.exe
+File Size                       : 105 kB
+File Modification Date/Time     : 2009:02:09 19:42:05+08:00
+File Type                       : Win32 EXE
+MIME Type                       : application/octet-stream
+Machine Type                    : Intel 386 or later, and compatibles
+Time Stamp                      : 2009:02:02 13:38:37+08:00
+PE Type                         : PE32
+Linker Version                  : 8.0
+Code Size                       : 49152
+Initialized Data Size           : 57344
+Uninitialized Data Size         : 0
+Entry Point                     : 0x3d76
+OS Version                      : 4.0
+Image Version                   : 0.0
+Subsystem Version               : 4.0
+Subsystem                       : Windows GUI
+File Version Number             : 11.0.4010.7
+Product Version Number          : 11.0.4010.7
+File OS                         : Windows NT 32-bit
+Object File Type                : Executable application
+Language Code                   : English (U.S.)
+Character Set                   : Windows, Latin1
+Company Name                    : Symantec Corporation
+File Description                : Symantec 802.1x Supplicant
+File Version                    : 11.0.4010.7
+Internal Name                   : dot1xtray
+\end{verbatim}
+\section*{It really depends on context}
+\label{sec-14}
+
+\begin{verbatim}
+RasTls.DLL 
+RasTls.DLL.msc
+RasTls.exe
+\end{verbatim}
+
+\url{http://msdn.microsoft.com/en-us/library/ms682586(v=VS.85).aspx}
+
+\textbf{Dynamic-Link Library Search Order}
+
+\includegraphics[width=.9\linewidth]{images/pantsdown.jpg}
+
+
+
+\section*{Tools for Dynamic Detection of IOC}
+\label{sec-15}
+
+\begin{itemize}
+\item Snort
+\item Yara + yara-enabled tools
+\item Moloch
+\item Splunk/Log search
+\end{itemize}
+\section*{Tools for Dynamic Detection}
+\label{sec-16}
+
+\begin{itemize}
+\item Moloch
+\begin{itemize}
+\item Moloch supports Yara (IOCs can be directly applied)
+\item Moloch has tagger plugin:
+\end{itemize}
+\end{itemize}
+\begin{verbatim}
+# tagger.so
+# provides ability to import text files with IP and/or hostnames 
+# into a sensor that would cause autotagging of all matching sessions
+plugins=tagger.so
+taggerIpFiles=blacklist,tag,tag,tag...
+taggerDomainFiles=domainbasedblacklists, tag, tag, tag
+\end{verbatim}
+\section*{Sources of IOCs}
+\label{sec-17}
+
+ioc collection
+\url{http://iocbucket.com}
+
+Public blacklists/trackers could also be used as source:
+
+\url{https://zeustracker.abuse.ch/blocklist.php?download=ipblocklist}
+
+\url{https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist}
+\section*{where to mine IOC}
+\label{sec-18}
+
+\begin{itemize}
+\item passive HTTP (keep your data recorded)
+\item passive DNS
+\end{itemize}
+
+These platforms provide
+ability to mine traffic or patterns from the past
+based on IOC similarity
+
+\textbf{show me all the packets similar to this IOC}
+
+We implemented a whois service for IOC look-ups
+\begin{verbatim}
+whois -h ioc.host.com   attribute:value+attribute:value
+\end{verbatim}
+
+\section*{Mining IOCs from your own data}
+\label{sec-19}
+\begin{itemize}
+\item find and investigate incident
+\item Or even read paper
+\item determine indicators and test it in YOUR Environment
+\item use new indicators in the future
+
+\textbf{see IOC cycle we mentioned earlier}
+\end{itemize}
+\section*{Example}
+\label{sec-20}
+If event chain leads to compromise
+\begin{verbatim}
+http:// liapolasens[.]info/indexm.html
+
+http:// liapolasens[.]info/counter.php?t=f&v=win%2011,7,700,169&a=true
+
+http:// liapolasens[.]info/354RIcx
+
+http:// liapolasens[.]info/054RIcx
+\end{verbatim}
+What to do?
+\section*{Use YARA, or tune your own tools}
+\label{sec-21}
+\begin{verbatim}
+rule susp_params_in_url_kind_of_fileless_bot_drive_by
+{
+        meta:
+        date = "oct 2013"
+        description = "Landing hxxp://jdatastorelame.info/indexm.html  04.10.2013 13:14  108.62.112.84  "  
+        description1 =  " Java Sploit hxxp://jdatastorelame.info/054RIwj     "
+
+
+    strings:
+        $string0 = "http"
+        $string1 = "indexm.html"
+        $string2 = "054RI"
+
+
+
+    condition:
+        all of them
+}
+\end{verbatim}
+\section*{Use snort to catch suspicious traffic:}
+\label{sec-22}
+
+\begin{verbatim}
+# many plugX deployments connect to google DNS when not in use
+alert tcp !$DNS_SERVERS any -> 8.8.8.8 53 (msg:"APT possible PlugX Google DNS TCP
+port 53 connection attempt"; classtype:misc-activity; sid:500000112;
+rev:1;)
+\end{verbatim}
+\section*{Questions}
+\label{sec-23}
+
+Or contact us at \ldots{}
+% Emacs 24.3.50.1 (Org mode 8.2.5c)
+\end{document}
