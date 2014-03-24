@@ -20,7 +20,7 @@
 Практическое применение статистических и временных индикаторов для
 выявления и расследования инцидентов ИБ
 
-поговорим　о　том　что　такое　индикаторы　　компромисов　и　с　чем　их　едять.
+поговорим　о　том　что　такое　индикаторы　　вторжений　и　с　чем　их　едять.
 * Basics
 
 *Indicators of Compromise*
@@ -228,17 +228,21 @@ taggerDomainFiles=domainbasedblacklists, tag, tag, tag
 
 * Sources of IOCs
 
+ioc collection
 http://iocbucket.com
+
+Public blacklists/trackers could also be used as source:
 
 https://zeustracker.abuse.ch/blocklist.php?download=ipblocklist
 
 https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist
 
-* Platforms useful for IOC
+* where to mine IOC
 
 - passive HTTP (keep your data recorded)
 - passive DNS
 
+These platforms provide
 ability to mine traffic or patterns from the past
 based on IOC similarity
 
@@ -255,6 +259,8 @@ whois -h ioc.host.com   attribute:value+attribute:value
 - Or even read paper
 - determine indicators and test it in YOUR Environment
 - use new indicators in the future
+
+  *see IOC cycle we mentioned earlier*
 
 * Example 
 If event chain leads to compromise
@@ -291,3 +297,18 @@ rule susp_params_in_url_kind_of_fileless_bot_drive_by
     	all of them
 }
 #+END_SRC
+
+* Use snort to catch suspicious traffic:
+
+#+BEGIN_SRC sh
+
+# many plugX deployments connect to google DNS when not in use
+alert tcp !$DNS_SERVERS any -> 8.8.8.8 53 (msg:"APT possible PlugX Google DNS TCP
+port 53 connection attempt"; classtype:misc-activity; sid:500000112;
+rev:1;)
+
+#+END_SRC
+
+* Questions
+
+Or contact us at ...
