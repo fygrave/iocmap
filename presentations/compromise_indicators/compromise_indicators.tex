@@ -1,4 +1,4 @@
-% Created 2014-03-25 Tue 13:15
+% Created 2014-03-25 Tue 17:25
 \documentclass[presentation,smaller]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -28,6 +28,7 @@ linkcolor=blue,%
 urlcolor=black
 }
 \institute{Affilations:  Academia Sinica, o0o.nu, chroot.org}
+\setbeamersize{text margin left=0.2cm}
 \usetheme{Szeged}
 \author{Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin\\\ RuCrypto 2014}
 \date{\today}
@@ -362,11 +363,37 @@ rev:1;)
 \end{frame}
 
 \begin{frame}[label=sec-7-9]{IOC management portal}
-\includegraphics[width=.9\linewidth]{images/ioc01.png}
+\includegraphics[width=14cm]{images/ioc01.png}
 \end{frame}
 
-\begin{frame}[label=sec-7-10]{and every manager loves graphs :p}
-\includegraphics[width=.9\linewidth]{images/ioc02.png}
+\begin{frame}[fragile,label=sec-7-10]{IOC exportable to json}
+ \tiny
+\lstset{language=C,numbers=none}
+\begin{lstlisting}
+{ "8000" : { "IP" : ['212.83.167.192', '212.83.170.14', '212.83.170.22', '212.83.173.163', '212.83.166.207'] },
+"fyflash" : { "IP" : ['103.246.246.103', '74.126.177.68', '204.200.222.136', '194.183.224.75', 
+'76.73.80.188', '74.126.177.70', '192.74.246.219', '74.126.177.241'] , 
+"Domain" : ['wmi.ns01.us ', 'proxy.ddns.info ', 'windows.ddns.us ', 
+'microsafes.no-ip.org ', 'fuckchina.govnb.com ', 'ids.ns01.us ', 
+'updatedns.ns01.us ', 'updatedns.ns02.us ', 
+'adservice.no-ip.org ', 'java.ns1.name '] , 
+"MD5" : ['7d810e3564c4eb95bcb3d11ce191208e', '1ec5141051776ec9092db92050192758'] },
+"btc" : { "IP" : ['184.106.146.244'] },
+"slvbuso" : { "MD5" : ['45645F17E3B014B9BCE89A793F5775B2'] , "Domain" : ['helldark.biz'] },
+"sp" : { "IP" : ['194.58.91.186', '95.156.238.14', '192.95.46.0', '198.50.131.220', '198.50.244.144',
+ '198.50.140.72', '95.156.238.5', '192.95.46.25'] },
+"pw" : { "IP" : ['185.8.106.97', '195.2.253.25'] },
+"sophMdropFQI" : { "MD5" : ['cf656fd9f839a5cd56bb999197745a49'] , "Domain" : ['samiollo.org'] },
+"symsr" : { "IP" : ['212.95.32.52', '95.211.130.132', '123.45.67.89'] ,
+ "Domain" : ['wertdghbyrukl.ch', 'rgtryhbgddtyh.biz'] } 
+"fakeinstr" : { "IP" : ['46.165.250.237', '46.165.250.236', '46.165.250.197'] },
+"msProlaco" : { "Domain" : ['kathell.com', 'coginix.org'] } }
+\end{lstlisting}
+\normalsize
+\end{frame}
+
+\begin{frame}[label=sec-7-11]{and every manager loves graphs :p}
+\includegraphics[width=14cm]{images/ioc02.png}
 \end{frame}
 
 \section{Questions}
