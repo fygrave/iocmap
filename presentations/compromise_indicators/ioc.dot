@@ -1,7 +1,11 @@
 digraph ioc {
         scmap = true;
-        nodesep = 0.09;
-        //rankdir=LR;
+//        nodesep = 0.09;
+//        rankdir=LR;
+rankdir=BT;
+
+overlap=false;
+
         node [style=filled;
               shape=record;
               ];

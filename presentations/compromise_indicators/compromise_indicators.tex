@@ -1,5 +1,5 @@
-% Created 2014-03-24 Mon 19:22
-\documentclass[11pt]{article}
+% Created 2014-03-25 Tue 11:43
+\documentclass[presentation,smaller]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{fixltx2e}
@@ -25,6 +25,7 @@ filecolor=black,%
 linkcolor=blue,%
 urlcolor=black
 }
+\usetheme{Frankfurt}
 \author{Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin}
 \date{\today}
 \title{Incident Response tactics with Compromise Indicators}
@@ -35,43 +36,42 @@ urlcolor=black
 \begin{document}
 
 \maketitle
+\begin{frame}{Outline}
 \tableofcontents
+\end{frame}
 
 
-\section*{Basics}
+\section{Basics}
 \label{sec-1}
-
-\textbf{Indicators of Compromise}
+\begin{frame}[label=sec-1-1]{Introduction}
+\alert{Indicators of Compromise}
 
 Indicator of compromise (IOC) in computer forensics is an artifact
 observed on network or in operating system that with high confidence
 indicates a computer intrusion.
 
 \url{http://en.wikipedia.org/wiki/Indicator_of_compromise}
+\end{frame}
 
 
-\section*{IOC workflow}
-\label{sec-2}
-
-
+\begin{frame}[label=sec-1-2]{IOC workflow}
 A typical flow with Indicators of Compromise allows
 to integrate dynamic threat intelligence into detection 
 process:
-
-\includegraphics[width=.9\linewidth]{images/ioc.png}
+\includegraphics[width=5cm]{images/ioc.png}
 
 source: Sophisticated indicators for the modern threat landscape, 2012
 paper
-\section*{Standards: OpenIOC}
-\label{sec-3}
-
+\end{frame}
+\section{Standards}
+\label{sec-2}
+\begin{frame}[label=sec-2-1]{Standards: OpenIOC}
 OpenIOC - Mandiant-backed effort for unform representation of IOC
 (now FireEye)
 \url{http://www.openioc.org/}
 \includegraphics[width=.9\linewidth]{images/zeus-ioc.png}
-\section*{Standards: Mitre}
-\label{sec-4}
-
+\end{frame}
+\begin{frame}[label=sec-2-2]{Standards: Mitre}
 Mitre CybOX:
 \url{http://cybox.mitre.org/}
 \url{https://github.com/CybOXProject/Tools}
@@ -82,9 +82,12 @@ Mitre STIX:
 \url{http://stix.mitre.org/}
 Mitre TAXII
 \url{http://taxii.mitre.org/}
-\section*{Tools}
-\label{sec-5}
+\end{frame}
+\section{Tools}
+\label{sec-3}
 
+\begin{frame}[label=sec-3-1]{Open-source tools}
+OpenIOC manipulation
 \url{https://github.com/STIXProject/openioc-to-stix}
 \url{https://github.com/tklane/openiocscripts} 
 
@@ -96,15 +99,18 @@ importers: \url{https://github.com/siemens/django-mantis-openioc-importer}
 
 Search splunk data for IOC indicators:
 \url{https://github.com/technoskald/splunk-search}
-\section*{Online Sharing of IOCs}
-\label{sec-6}
 
+Our framework:
+\url{http://github.com/fygrave/iocmap/}
+\end{frame}
+\section{Sharing IOCs}
+\label{sec-4}
+\begin{frame}[label=sec-4-1]{Online Sharing of IOCs}
 \url{http://iocbucket.com/}
 
 \includegraphics[width=.9\linewidth]{images/iocbucket.png}
-\section*{Sharing IOCS}
-\label{sec-7}
-
+\end{frame}
+\begin{frame}[label=sec-4-2]{Policies on Sharing}
 Policies on sharing IOCs:
 
 \begin{itemize}
@@ -112,9 +118,10 @@ Policies on sharing IOCs:
 \item who to share with
 \item when to share
 \end{itemize}
-\section*{IOCs composites}
-\label{sec-8}
-Where to look for IOCs:
+\end{frame}
+\section{IOCs composites}
+\label{sec-5}
+\begin{frame}[label=sec-5-1]{Where to look for IOCs:}
 \begin{itemize}
 \item Outbound Network Traffic
 \item User Activities/Failed Logins
@@ -128,8 +135,8 @@ Where to look for IOCs:
 \item DNS and HTTP traffic requests
 \item Suspicious Scripts, Executables and Data Files
 \end{itemize}
-\section*{Challenges}
-\label{sec-9}
+\end{frame}
+\begin{frame}[label=sec-5-2]{Challenges}
 Why we need IOCs? because it makes it easier to
 systematically describe knowledge about breaches.
 
@@ -146,17 +153,18 @@ systematically describe knowledge about breaches.
 \item Details matter
 \item Attribution is hard
 \end{itemize}
-\section*{Challenges}
-\label{sec-10}
-\textbf{All networks are compromised}
+\end{frame}
+\begin{frame}[label=sec-5-3]{Challenges}
+\alert{All networks are compromised}
 
 
 The difference between a good security team and a bad security team is
 that with a bad security team you will never know that you've been
 compromised.
-
-\section*{An Example}
-\label{sec-11}
+\end{frame}
+\section{Case Study}
+\label{sec-6}
+\begin{frame}[label=sec-6-1]{An Example}
 A Network compromise case study:
 \begin{itemize}
 \item Attackers broke via a web vuln.
@@ -166,9 +174,8 @@ A Network compromise case study:
 \item Attackers launched tunneling tools – connecting back to C2
 \item Attackers installed RATs to maintain access
 \end{itemize}
-\section*{Indicators}
-\label{sec-12}
-
+\end{frame}
+\begin{frame}[label=sec-6-2]{Indicators}
 So what are the compromise indicators here?
 
 \begin{itemize}
@@ -179,9 +186,10 @@ So what are the compromise indicators here?
 \item What users were created locally? (username)
 \item What usernames were probed on other machines
 \end{itemize}
+\end{frame}
 
-\section*{Good or Bad?}
-\label{sec-13}
+\begin{frame}[fragile,label=sec-6-3]{Good or Bad?}
+ \tiny
 \begin{verbatim}
 File Name                       : RasTls.exe
 File Size                       : 105 kB
@@ -211,10 +219,10 @@ File Description                : Symantec 802.1x Supplicant
 File Version                    : 11.0.4010.7
 Internal Name                   : dot1xtray
 \end{verbatim}
-\section*{It really depends on context}
-\label{sec-14}
-
-\begin{verbatim}
+\normalsize
+\end{frame}
+\begin{frame}[fragile,label=sec-6-4]{It really depends on context}
+ \begin{verbatim}
 RasTls.DLL 
 RasTls.DLL.msc
 RasTls.exe
@@ -222,25 +230,24 @@ RasTls.exe
 
 \url{http://msdn.microsoft.com/en-us/library/ms682586(v=VS.85).aspx}
 
-\textbf{Dynamic-Link Library Search Order}
+\alert{Dynamic-Link Library Search Order}
 
-\includegraphics[width=.9\linewidth]{images/pantsdown.jpg}
+\includegraphics[width=3cm]{images/pantsdown.jpg}
+\end{frame}
 
 
-
-\section*{Tools for Dynamic Detection of IOC}
-\label{sec-15}
-
+\section{More on Tools}
+\label{sec-7}
+\begin{frame}[label=sec-7-1]{Tools for Dynamic Detection of IOC}
 \begin{itemize}
 \item Snort
 \item Yara + yara-enabled tools
 \item Moloch
 \item Splunk/Log search
 \end{itemize}
-\section*{Tools for Dynamic Detection}
-\label{sec-16}
-
-\begin{itemize}
+\end{frame}
+\begin{frame}[fragile,label=sec-7-2]{Tools for Dynamic Detection}
+ \begin{itemize}
 \item Moloch
 \begin{itemize}
 \item Moloch supports Yara (IOCs can be directly applied)
@@ -255,9 +262,8 @@ plugins=tagger.so
 taggerIpFiles=blacklist,tag,tag,tag...
 taggerDomainFiles=domainbasedblacklists, tag, tag, tag
 \end{verbatim}
-\section*{Sources of IOCs}
-\label{sec-17}
-
+\end{frame}
+\begin{frame}[label=sec-7-3]{Sources of IOCs}
 ioc collection
 \url{http://iocbucket.com}
 
@@ -266,10 +272,9 @@ Public blacklists/trackers could also be used as source:
 \url{https://zeustracker.abuse.ch/blocklist.php?download=ipblocklist}
 
 \url{https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist}
-\section*{where to mine IOC}
-\label{sec-18}
-
-\begin{itemize}
+\end{frame}
+\begin{frame}[fragile,label=sec-7-4]{where to mine IOC}
+ \begin{itemize}
 \item passive HTTP (keep your data recorded)
 \item passive DNS
 \end{itemize}
@@ -278,26 +283,26 @@ These platforms provide
 ability to mine traffic or patterns from the past
 based on IOC similarity
 
-\textbf{show me all the packets similar to this IOC}
+\alert{show me all the packets similar to this IOC}
 
 We implemented a whois service for IOC look-ups
 \begin{verbatim}
 whois -h ioc.host.com   attribute:value+attribute:value
 \end{verbatim}
+\end{frame}
 
-\section*{Mining IOCs from your own data}
-\label{sec-19}
+\begin{frame}[label=sec-7-5]{Mining IOCs from your own data}
 \begin{itemize}
 \item find and investigate incident
 \item Or even read paper
 \item determine indicators and test it in YOUR Environment
 \item use new indicators in the future
 
-\textbf{see IOC cycle we mentioned earlier}
+\alert{see IOC cycle we mentioned earlier}
 \end{itemize}
-\section*{Example}
-\label{sec-20}
-If event chain leads to compromise
+\end{frame}
+\begin{frame}[fragile,label=sec-7-6]{Example}
+ If event chain leads to compromise
 \begin{verbatim}
 http:// liapolasens[.]info/indexm.html
 
@@ -308,9 +313,9 @@ http:// liapolasens[.]info/354RIcx
 http:// liapolasens[.]info/054RIcx
 \end{verbatim}
 What to do?
-\section*{Use YARA, or tune your own tools}
-\label{sec-21}
-\begin{verbatim}
+\end{frame}
+\begin{frame}[fragile,label=sec-7-7]{Use YARA, or tune your own tools}
+ \begin{verbatim}
 rule susp_params_in_url_kind_of_fileless_bot_drive_by
 {
         meta:
@@ -330,18 +335,29 @@ rule susp_params_in_url_kind_of_fileless_bot_drive_by
         all of them
 }
 \end{verbatim}
-\section*{Use snort to catch suspicious traffic:}
-\label{sec-22}
-
-\begin{verbatim}
+\end{frame}
+\begin{frame}[fragile,label=sec-7-8]{Use snort to catch suspicious traffic:}
+ \begin{verbatim}
 # many plugX deployments connect to google DNS when not in use
 alert tcp !$DNS_SERVERS any -> 8.8.8.8 53 (msg:"APT possible PlugX Google DNS TCP
 port 53 connection attempt"; classtype:misc-activity; sid:500000112;
 rev:1;)
 \end{verbatim}
-\section*{Questions}
-\label{sec-23}
+\end{frame}
+\begin{frame}[label=sec-7-9]{IOC management portal}
+IOC management can be automated
+\includegraphics[width=.9\linewidth]{images/ioc01.png}
+\end{frame}
 
+\begin{frame}[label=sec-7-10]{and show nice graphs ;)}
+every manager loves graphs :p
+\includegraphics[width=.9\linewidth]{images/ioc02.png}
+\end{frame}
+
+\section{Questions}
+\label{sec-8}
+\begin{frame}[label=sec-8-1]{Q and A}
 Or contact us at \ldots{}
+\end{frame}
 % Emacs 24.3.50.1 (Org mode 8.2.5c)
 \end{document}

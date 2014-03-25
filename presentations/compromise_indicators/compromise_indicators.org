@@ -4,9 +4,12 @@
 #+EPRESENT_FRAME_LEVEL: 1
 #+FILETAGS:
 #+LATEX_OPTIONS:
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [presentation,smaller]
+#+BEAMER_THEME: Frankfurt
 #+LATEX_HEADER: \usepackage[utf8]{inputenc}
 #+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
-#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t
 #+OPTIONS: reveal_width:1200 reveal_height:800
 #+LANGUAGE: en
 #+LATEX_HEADER: \usepackage{hyperref}
@@ -17,7 +20,7 @@
 #+LATEX_HEADER:     linkcolor=blue,%
 #+LATEX_HEADER:     urlcolor=black
 #+LATEX_HEADER: }
-#+OPTIONS:    H:3  toc:t \n:nil ::t |:t ^:t -:t f:t *:t tex:t d:(HIDE) tags:not-in-toc
+#+OPTIONS:    H:2  
 #+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 0.5
@@ -29,7 +32,7 @@
 #+EPRESENT_FRAME_LEVEL: 1
 
 * Basics
-
+** Introduction
 *Indicators of Compromise*
 
 Indicator of compromise (IOC) in computer forensics is an artifact
@@ -40,26 +43,27 @@ indicates a computer intrusion.
 
 
 
-* IOC workflow
+** IOC workflow
 
 
 A typical flow with Indicators of Compromise allows
 to integrate dynamic threat intelligence into detection 
 process:
-
+ #+ATTR_LATEX: :width 5cm
 [[file:images/ioc.png]]
 
 source: Sophisticated indicators for the modern threat landscape, 2012
 paper
 
-* Standards: OpenIOC
+* Standards
+** Standards: OpenIOC
 
 OpenIOC - Mandiant-backed effort for unform representation of IOC
 (now FireEye)
 [[http://www.openioc.org/]]
 [[file:images/zeus-ioc.png]]
 
-* Standards: Mitre
+** Standards: Mitre
 
 Mitre CybOX:
 http://cybox.mitre.org/
@@ -74,6 +78,9 @@ http://taxii.mitre.org/
 
 * Tools
 
+** Open-source tools
+
+OpenIOC manipulation
 [[https://github.com/STIXProject/openioc-to-stix]]
 https://github.com/tklane/openiocscripts 
 
@@ -86,13 +93,17 @@ importers: https://github.com/siemens/django-mantis-openioc-importer
 Search splunk data for IOC indicators:
 https://github.com/technoskald/splunk-search
 
-* Online Sharing of IOCs
+Our framework:
+[[http://github.com/fygrave/iocmap/]]
+
+* Sharing IOCs
+** Online Sharing of IOCs
 
 http://iocbucket.com/
 
 [[file:images/iocbucket.png]]
 
-* Sharing IOCS
+** Policies on Sharing
 
 Policies on sharing IOCs:
 
@@ -101,7 +112,7 @@ Policies on sharing IOCs:
 - when to share
 
 * IOCs composites
-Where to look for IOCs:
+** Where to look for IOCs:
 - Outbound Network Traffic
 - User Activities/Failed Logins
 - User profile folders
@@ -114,7 +125,7 @@ Where to look for IOCs:
 - DNS and HTTP traffic requests
 - Suspicious Scripts, Executables and Data Files
 
-* Challenges
+** Challenges
 Why we need IOCs? because it makes it easier to
 systematically describe knowledge about breaches.
  
@@ -128,7 +139,7 @@ systematically describe knowledge about breaches.
 - Details matter
 - Attribution is hard
 
-* Challenges
+** Challenges
  *All networks are compromised*
 
 
@@ -136,8 +147,8 @@ The difference between a good security team and a bad security team is
 that with a bad security team you will never know that you've been
 compromised.
 
-
-* An Example
+* Case Study
+** An Example
 A Network compromise case study:
 - Attackers broke via a web vuln.
 - Attackers gained local admin access
@@ -146,7 +157,7 @@ A Network compromise case study:
 - Attackers launched tunneling tools – connecting back to C2
 - Attackers installed RATs to maintain access
 
-* Indicators
+** Indicators
 
 So what are the compromise indicators here?
 
@@ -158,7 +169,9 @@ So what are the compromise indicators here?
 - What usernames were probed on other machines
 
 
-* Good or Bad?
+** Good or Bad?
+#+ATTR_LATEX: :float nil
+\tiny
 #+BEGIN_SRC sh
 
 File Name                       : RasTls.exe
@@ -189,8 +202,9 @@ File Description                : Symantec 802.1x Supplicant
 File Version                    : 11.0.4010.7
 Internal Name                   : dot1xtray
 #+END_SRC
+\normalsize
 
-* It really depends on context
+** It really depends on context
 
 #+BEGIN_SRC sh
 
@@ -204,19 +218,20 @@ Internal Name                   : dot1xtray
 
 *Dynamic-Link Library Search Order*
 
+#+ATTR_LATEX: :width 3cm
 [[file:images/pantsdown.jpg]]
 
 
 
-
-* Tools for Dynamic Detection of IOC
+* More on Tools 
+** Tools for Dynamic Detection of IOC
 
 - Snort
 - Yara + yara-enabled tools
 - Moloch
 - Splunk/Log search
 
-* Tools for Dynamic Detection
+** Tools for Dynamic Detection
 
 - Moloch
  - Moloch supports Yara (IOCs can be directly applied)
@@ -233,7 +248,7 @@ taggerDomainFiles=domainbasedblacklists, tag, tag, tag
 
 #+END_SRC
 
-* Sources of IOCs
+** Sources of IOCs
 
 ioc collection
 http://iocbucket.com
@@ -244,7 +259,7 @@ https://zeustracker.abuse.ch/blocklist.php?download=ipblocklist
 
 https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist
 
-* where to mine IOC
+** where to mine IOC
 
 - passive HTTP (keep your data recorded)
 - passive DNS
@@ -261,7 +276,7 @@ We implemented a whois service for IOC look-ups
 whois -h ioc.host.com   attribute:value+attribute:value
 
 #+END_SRC
-* Mining IOCs from your own data
+** Mining IOCs from your own data
 - find and investigate incident
 - Or even read paper
 - determine indicators and test it in YOUR Environment
@@ -269,7 +284,7 @@ whois -h ioc.host.com   attribute:value+attribute:value
 
   *see IOC cycle we mentioned earlier*
 
-* Example 
+** Example 
 If event chain leads to compromise
 #+BEGIN_SRC sh
 http:// liapolasens[.]info/indexm.html
@@ -283,7 +298,7 @@ http:// liapolasens[.]info/054RIcx
 #+END_SRC
 What to do?
 
-* Use YARA, or tune your own tools
+** Use YARA, or tune your own tools
 #+BEGIN_SRC sh
 rule susp_params_in_url_kind_of_fileless_bot_drive_by
 {
@@ -305,7 +320,7 @@ rule susp_params_in_url_kind_of_fileless_bot_drive_by
 }
 #+END_SRC
 
-* Use snort to catch suspicious traffic:
+** Use snort to catch suspicious traffic:
 
 #+BEGIN_SRC sh
 
@@ -316,6 +331,12 @@ rev:1;)
 
 #+END_SRC
 
+** IOC management portal
+IOC management can be automated
+[[file:images/ioc01.png]]
+** and show nice graphs ;)
+every manager loves graphs :p
+[[file:images/ioc02.png]]
 * Questions
-
+** Q and A
 Or contact us at ...
