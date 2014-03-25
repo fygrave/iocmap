@@ -1,4 +1,4 @@
-% Created 2014-03-25 Tue 11:43
+% Created 2014-03-25 Tue 12:27
 \documentclass[presentation,smaller]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -16,6 +16,8 @@
 \usepackage{amssymb}
 \usepackage{hyperref}
 \tolerance=1000
+\usepackage{color}
+\usepackage{listings}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \hypersetup{
@@ -25,7 +27,7 @@ filecolor=black,%
 linkcolor=blue,%
 urlcolor=black
 }
-\usetheme{Frankfurt}
+\usetheme{Szeged}
 \author{Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin}
 \date{\today}
 \title{Incident Response tactics with Compromise Indicators}
@@ -190,7 +192,8 @@ So what are the compromise indicators here?
 
 \begin{frame}[fragile,label=sec-6-3]{Good or Bad?}
  \tiny
-\begin{verbatim}
+\lstset{language=sh,numbers=none}
+\begin{lstlisting}
 File Name                       : RasTls.exe
 File Size                       : 105 kB
 File Modification Date/Time     : 2009:02:09 19:42:05+08:00
@@ -218,15 +221,16 @@ Company Name                    : Symantec Corporation
 File Description                : Symantec 802.1x Supplicant
 File Version                    : 11.0.4010.7
 Internal Name                   : dot1xtray
-\end{verbatim}
+\end{lstlisting}
 \normalsize
 \end{frame}
 \begin{frame}[fragile,label=sec-6-4]{It really depends on context}
- \begin{verbatim}
+ \lstset{language=sh,numbers=none}
+\begin{lstlisting}
 RasTls.DLL 
 RasTls.DLL.msc
 RasTls.exe
-\end{verbatim}
+\end{lstlisting}
 
 \url{http://msdn.microsoft.com/en-us/library/ms682586(v=VS.85).aspx}
 
@@ -254,14 +258,15 @@ RasTls.exe
 \item Moloch has tagger plugin:
 \end{itemize}
 \end{itemize}
-\begin{verbatim}
+\lstset{language=sh,numbers=none}
+\begin{lstlisting}
 # tagger.so
 # provides ability to import text files with IP and/or hostnames 
 # into a sensor that would cause autotagging of all matching sessions
 plugins=tagger.so
 taggerIpFiles=blacklist,tag,tag,tag...
 taggerDomainFiles=domainbasedblacklists, tag, tag, tag
-\end{verbatim}
+\end{lstlisting}
 \end{frame}
 \begin{frame}[label=sec-7-3]{Sources of IOCs}
 ioc collection
@@ -286,9 +291,10 @@ based on IOC similarity
 \alert{show me all the packets similar to this IOC}
 
 We implemented a whois service for IOC look-ups
-\begin{verbatim}
+\lstset{language=sh,numbers=none}
+\begin{lstlisting}
 whois -h ioc.host.com   attribute:value+attribute:value
-\end{verbatim}
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[label=sec-7-5]{Mining IOCs from your own data}
@@ -303,7 +309,9 @@ whois -h ioc.host.com   attribute:value+attribute:value
 \end{frame}
 \begin{frame}[fragile,label=sec-7-6]{Example}
  If event chain leads to compromise
-\begin{verbatim}
+\tiny
+\lstset{language=sh,numbers=none}
+\begin{lstlisting}
 http:// liapolasens[.]info/indexm.html
 
 http:// liapolasens[.]info/counter.php?t=f&v=win%2011,7,700,169&a=true
@@ -311,11 +319,14 @@ http:// liapolasens[.]info/counter.php?t=f&v=win%2011,7,700,169&a=true
 http:// liapolasens[.]info/354RIcx
 
 http:// liapolasens[.]info/054RIcx
-\end{verbatim}
+\end{lstlisting}
+\normalsize
 What to do?
 \end{frame}
 \begin{frame}[fragile,label=sec-7-7]{Use YARA, or tune your own tools}
- \begin{verbatim}
+ \tiny
+\lstset{language=sh,numbers=none}
+\begin{lstlisting}
 rule susp_params_in_url_kind_of_fileless_bot_drive_by
 {
         meta:
@@ -334,23 +345,26 @@ rule susp_params_in_url_kind_of_fileless_bot_drive_by
     condition:
         all of them
 }
-\end{verbatim}
+\end{lstlisting}
+\normalsize
 \end{frame}
 \begin{frame}[fragile,label=sec-7-8]{Use snort to catch suspicious traffic:}
- \begin{verbatim}
+ \tiny
+\lstset{language=sh,numbers=none}
+\begin{lstlisting}
 # many plugX deployments connect to google DNS when not in use
 alert tcp !$DNS_SERVERS any -> 8.8.8.8 53 (msg:"APT possible PlugX Google DNS TCP
 port 53 connection attempt"; classtype:misc-activity; sid:500000112;
 rev:1;)
-\end{verbatim}
+\end{lstlisting}
+\normalsize
 \end{frame}
+
 \begin{frame}[label=sec-7-9]{IOC management portal}
-IOC management can be automated
 \includegraphics[width=.9\linewidth]{images/ioc01.png}
 \end{frame}
 
-\begin{frame}[label=sec-7-10]{and show nice graphs ;)}
-every manager loves graphs :p
+\begin{frame}[label=sec-7-10]{and every manager loves graphs :p}
 \includegraphics[width=.9\linewidth]{images/ioc02.png}
 \end{frame}
 

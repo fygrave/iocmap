@@ -5,7 +5,7 @@
 #+LATEX_OPTIONS:
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [presentation,smaller]
-#+BEAMER_THEME: Frankfurt
+#+BEAMER_THEME: Szeged
 #+LATEX_HEADER: \usepackage[utf8]{inputenc}
 #+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
 #+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t
@@ -285,6 +285,7 @@ whois -h ioc.host.com   attribute:value+attribute:value
 
 ** Example 
 If event chain leads to compromise
+\tiny
 #+BEGIN_SRC sh
 http:// liapolasens[.]info/indexm.html
 
@@ -295,9 +296,11 @@ http:// liapolasens[.]info/354RIcx
 http:// liapolasens[.]info/054RIcx
 
 #+END_SRC
+\normalsize
 What to do?
 
 ** Use YARA, or tune your own tools
+\tiny
 #+BEGIN_SRC sh
 rule susp_params_in_url_kind_of_fileless_bot_drive_by
 {
@@ -318,9 +321,10 @@ rule susp_params_in_url_kind_of_fileless_bot_drive_by
     	all of them
 }
 #+END_SRC
+\normalsize
 
 ** Use snort to catch suspicious traffic:
-
+\tiny
 #+BEGIN_SRC sh
 
 # many plugX deployments connect to google DNS when not in use
@@ -329,12 +333,10 @@ port 53 connection attempt"; classtype:misc-activity; sid:500000112;
 rev:1;)
 
 #+END_SRC
-
+\normalsize
 ** IOC management portal
-IOC management can be automated
 [[file:images/ioc01.png]]
-** and show nice graphs ;)
-every manager loves graphs :p
+** and every manager loves graphs :p
 [[file:images/ioc02.png]]
 * Questions
 ** Q and A
