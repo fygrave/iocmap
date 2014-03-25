@@ -1,7 +1,6 @@
 #+Title: Incident Response tactics with Compromise Indicators
 #+Author: Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin
 #+Email:
-#+EPRESENT_FRAME_LEVEL: 1
 #+FILETAGS:
 #+LATEX_OPTIONS:
 #+LaTeX_CLASS: beamer
@@ -27,9 +26,9 @@
 #+REVEAL_MAX_SCALE: 2.5
 #+REVEAL_TRANS: cube
 #+REVEAL_THEME: moon
-#+REVEAL_HLEVEL: 1
+#+REVEAL_HLEVEL: 2
 #+REVEAL_PREAMBLE: ox-reveal-jekyll-preamble
-#+EPRESENT_FRAME_LEVEL: 1
+#+EPRESENT_FRAME_LEVEL: 2
 
 * Basics
 ** Introduction

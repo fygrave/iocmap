@@ -23,99 +23,122 @@ ox-reveal-jekyll-preamble
 <section>
 <h2>Table of Contents</h2><ul>
 <li>
-<a href="#sec-1">О　теме　по　русски</a>
+<a href="#sec-1">Basics</a>
+<ul>
+<li>
+<a href="#sec-1-1">Introduction</a>
 </li>
 <li>
-<a href="#sec-2">Basics</a>
+<a href="#sec-1-2">IOC workflow</a>
+</li>
+</ul>
+<li>
+<a href="#sec-2">Standards</a>
+<ul>
+<li>
+<a href="#sec-2-1">Standards: OpenIOC</a>
 </li>
 <li>
-<a href="#sec-3">IOC workflow</a>
+<a href="#sec-2-2">Standards: Mitre</a>
+</li>
+</ul>
+<li>
+<a href="#sec-3">Tools</a>
+<ul>
+<li>
+<a href="#sec-3-1">Open-source tools</a>
+</li>
+</ul>
+<li>
+<a href="#sec-4">Sharing IOCs</a>
+<ul>
+<li>
+<a href="#sec-4-1">Online Sharing of IOCs</a>
 </li>
 <li>
-<a href="#sec-4">Standards: OpenIOC</a>
+<a href="#sec-4-2">Policies on Sharing</a>
+</li>
+</ul>
+<li>
+<a href="#sec-5">IOCs composites</a>
+<ul>
+<li>
+<a href="#sec-5-1">Where to look for IOCs:</a>
 </li>
 <li>
-<a href="#sec-5">Standards: Mitre</a>
+<a href="#sec-5-2">Challenges</a>
 </li>
 <li>
-<a href="#sec-6">Tools</a>
+<a href="#sec-5-3">Challenges</a>
+</li>
+</ul>
+<li>
+<a href="#sec-6">Case Study</a>
+<ul>
+<li>
+<a href="#sec-6-1">An Example</a>
 </li>
 <li>
-<a href="#sec-7">Online Sharing of IOCs</a>
+<a href="#sec-6-2">Indicators</a>
 </li>
 <li>
-<a href="#sec-8">Sharing IOCS</a>
+<a href="#sec-6-3">Good or Bad?</a>
 </li>
 <li>
-<a href="#sec-9">IOCs composites</a>
+<a href="#sec-6-4">It really depends on context</a>
+</li>
+</ul>
+<li>
+<a href="#sec-7">More on Tools</a>
+<ul>
+<li>
+<a href="#sec-7-1">Tools for Dynamic Detection of IOC</a>
 </li>
 <li>
-<a href="#sec-10">Challenges</a>
+<a href="#sec-7-2">Tools for Dynamic Detection</a>
 </li>
 <li>
-<a href="#sec-11">Challenges</a>
+<a href="#sec-7-3">Sources of IOCs</a>
 </li>
 <li>
-<a href="#sec-12">An Example</a>
+<a href="#sec-7-4">where to mine IOC</a>
 </li>
 <li>
-<a href="#sec-13">Indicators</a>
+<a href="#sec-7-5">Mining IOCs from your own data</a>
 </li>
 <li>
-<a href="#sec-14">Good or Bad?</a>
+<a href="#sec-7-6">Example</a>
 </li>
 <li>
-<a href="#sec-15">It really depends on context</a>
+<a href="#sec-7-7">Use YARA, or tune your own tools</a>
 </li>
 <li>
-<a href="#sec-16">Tools for Dynamic Detection of IOC</a>
+<a href="#sec-7-8">Use snort to catch suspicious traffic:</a>
 </li>
 <li>
-<a href="#sec-17">Tools for Dynamic Detection</a>
+<a href="#sec-7-9">IOC management portal</a>
 </li>
 <li>
-<a href="#sec-18">Sources of IOCs</a>
+<a href="#sec-7-10">and show nice graphs ;)</a>
 </li>
+</ul>
 <li>
-<a href="#sec-19">where to mine IOC</a>
-</li>
+<a href="#sec-8">Questions</a>
+<ul>
 <li>
-<a href="#sec-20">Mining IOCs from your own data</a>
-</li>
-<li>
-<a href="#sec-21">Example</a>
-</li>
-<li>
-<a href="#sec-22">Use YARA, or tune your own tools</a>
-</li>
-<li>
-<a href="#sec-23">Use snort to catch suspicious traffic:</a>
-</li>
-<li>
-<a href="#sec-24">Questions</a>
+<a href="#sec-8-1">Q and A</a>
 </li>
 </ul>
 </section>
 
-<section>
 <section id="sec-1" >
 
-<h2>О　теме　по　русски</h2>
-<p>
-Практическое применение статистических и временных индикаторов для
-выявления и расследования инцидентов ИБ
-</p>
-
-<p>
-поговорим　о　том　что　такое　индикаторы　　вторжений　и　с　чем　их　едять.
-</p>
-</section>
-
+<h2><span class="section-number-2">1</span> Basics</h2>
 </section>
 <section>
-<section id="sec-2" >
+<section id="sec-1-1" >
 
-<h2>Basics</h2>
+<h3><span class="section-number-3">1.1</span> Introduction</h3>
 <p>
 <b>Indicators of Compromise</b>
 </p>
@@ -134,15 +157,14 @@ indicates a computer intrusion.
 
 </section>
 <section>
-<section id="sec-3" >
+<section id="sec-1-2" >
 
-<h2>IOC workflow</h2>
+<h3><span class="section-number-3">1.2</span> IOC workflow</h3>
 <p>
 A typical flow with Indicators of Compromise allows
 to integrate dynamic threat intelligence into detection 
 process:
 </p>
-
 <img src="images/ioc.png" alt="ioc.png" />
 
 <p>
@@ -151,10 +173,14 @@ paper
 </p>
 </section>
 </section>
-<section>
-<section id="sec-4" >
+<section id="sec-2" >
 
-<h2>Standards: OpenIOC</h2>
+<h2><span class="section-number-2">2</span> Standards</h2>
+</section>
+<section>
+<section id="sec-2-1" >
+
+<h3><span class="section-number-3">2.1</span> Standards: OpenIOC</h3>
 <p>
 OpenIOC - Mandiant-backed effort for unform representation of IOC
 (now FireEye)
@@ -164,9 +190,9 @@ OpenIOC - Mandiant-backed effort for unform representation of IOC
 </section>
 </section>
 <section>
-<section id="sec-5" >
+<section id="sec-2-2" >
 
-<h2>Standards: Mitre</h2>
+<h3><span class="section-number-3">2.2</span> Standards: Mitre</h3>
 <p>
 Mitre CybOX:
 <a href="http://cybox.mitre.org/">http://cybox.mitre.org/</a>
@@ -181,11 +207,16 @@ Mitre TAXII
 </p>
 </section>
 </section>
-<section>
-<section id="sec-6" >
+<section id="sec-3" >
 
-<h2>Tools</h2>
+<h2><span class="section-number-2">3</span> Tools</h2>
+</section>
+<section>
+<section id="sec-3-1" >
+
+<h3><span class="section-number-3">3.1</span> Open-source tools</h3>
 <p>
+OpenIOC manipulation
 <a href="https://github.com/STIXProject/openioc-to-stix">https://github.com/STIXProject/openioc-to-stix</a>
 <a href="https://github.com/tklane/openiocscripts">https://github.com/tklane/openiocscripts</a> 
 </p>
@@ -202,12 +233,21 @@ importers: <a href="https://github.com/siemens/django-mantis-openioc-importer">h
 Search splunk data for IOC indicators:
 <a href="https://github.com/technoskald/splunk-search">https://github.com/technoskald/splunk-search</a>
 </p>
+
+<p>
+Our framework:
+<a href="http://github.com/fygrave/iocmap/">http://github.com/fygrave/iocmap/</a>
+</p>
 </section>
+</section>
+<section id="sec-4" >
+
+<h2><span class="section-number-2">4</span> Sharing IOCs</h2>
 </section>
 <section>
-<section id="sec-7" >
+<section id="sec-4-1" >
 
-<h2>Online Sharing of IOCs</h2>
+<h3><span class="section-number-3">4.1</span> Online Sharing of IOCs</h3>
 <p>
 <a href="http://iocbucket.com/">http://iocbucket.com/</a>
 </p>
@@ -216,9 +256,9 @@ Search splunk data for IOC indicators:
 </section>
 </section>
 <section>
-<section id="sec-8" >
+<section id="sec-4-2" >
 
-<h2>Sharing IOCS</h2>
+<h3><span class="section-number-3">4.2</span> Policies on Sharing</h3>
 <p>
 Policies on sharing IOCs:
 </p>
@@ -233,13 +273,14 @@ Policies on sharing IOCs:
 </ul>
 </section>
 </section>
-<section>
-<section id="sec-9" >
+<section id="sec-5" >
 
-<h2>IOCs composites</h2>
-<p>
-Where to look for IOCs:
-</p>
+<h2><span class="section-number-2">5</span> IOCs composites</h2>
+</section>
+<section>
+<section id="sec-5-1" >
+
+<h3><span class="section-number-3">5.1</span> Where to look for IOCs:</h3>
 <ul class="org-ul">
 <li>Outbound Network Traffic
 </li>
@@ -267,9 +308,9 @@ Where to look for IOCs:
 </section>
 </section>
 <section>
-<section id="sec-10" >
+<section id="sec-5-2" >
 
-<h2>Challenges</h2>
+<h3><span class="section-number-3">5.2</span> Challenges</h3>
 <p>
 Why we need IOCs? because it makes it easier to
 systematically describe knowledge about breaches.
@@ -300,9 +341,9 @@ systematically describe knowledge about breaches.
 </section>
 </section>
 <section>
-<section id="sec-11" >
+<section id="sec-5-3" >
 
-<h2>Challenges</h2>
+<h3><span class="section-number-3">5.3</span> Challenges</h3>
 <p>
 <b>All networks are compromised</b>
 </p>
@@ -314,12 +355,15 @@ that with a bad security team you will never know that you've been
 compromised.
 </p>
 </section>
+</section>
+<section id="sec-6" >
 
+<h2><span class="section-number-2">6</span> Case Study</h2>
 </section>
 <section>
-<section id="sec-12" >
+<section id="sec-6-1" >
 
-<h2>An Example</h2>
+<h3><span class="section-number-3">6.1</span> An Example</h3>
 <p>
 A Network compromise case study:
 </p>
@@ -340,9 +384,9 @@ A Network compromise case study:
 </section>
 </section>
 <section>
-<section id="sec-13" >
+<section id="sec-6-2" >
 
-<h2>Indicators</h2>
+<h3><span class="section-number-3">6.2</span> Indicators</h3>
 <p>
 So what are the compromise indicators here?
 </p>
@@ -365,9 +409,12 @@ So what are the compromise indicators here?
 
 </section>
 <section>
-<section id="sec-14" >
+<section id="sec-6-3" >
 
-<h2>Good or Bad?</h2>
+<h3><span class="section-number-3">6.3</span> Good or Bad?</h3>
+<p>
+\tiny
+</p>
 <div class="org-src-container">
 
 <pre class="src src-sh">File Name                       : RasTls.exe
@@ -399,12 +446,15 @@ File Version                    : 11.0.4010.7
 Internal Name                   : dot1xtray
 </pre>
 </div>
+<p>
+\normalsize
+</p>
 </section>
 </section>
 <section>
-<section id="sec-15" >
+<section id="sec-6-4" >
 
-<h2>It really depends on context</h2>
+<h3><span class="section-number-3">6.4</span> It really depends on context</h3>
 <div class="org-src-container">
 
 <pre class="src src-sh">RasTls.DLL 
@@ -425,12 +475,15 @@ RasTls.exe
 </section>
 
 
+</section>
+<section id="sec-7" >
 
+<h2><span class="section-number-2">7</span> More on Tools</h2>
 </section>
 <section>
-<section id="sec-16" >
+<section id="sec-7-1" >
 
-<h2>Tools for Dynamic Detection of IOC</h2>
+<h3><span class="section-number-3">7.1</span> Tools for Dynamic Detection of IOC</h3>
 <ul class="org-ul">
 <li>Snort
 </li>
@@ -444,9 +497,9 @@ RasTls.exe
 </section>
 </section>
 <section>
-<section id="sec-17" >
+<section id="sec-7-2" >
 
-<h2>Tools for Dynamic Detection</h2>
+<h3><span class="section-number-3">7.2</span> Tools for Dynamic Detection</h3>
 <ul class="org-ul">
 <li>Moloch
 <ul class="org-ul">
@@ -470,9 +523,9 @@ RasTls.exe
 </section>
 </section>
 <section>
-<section id="sec-18" >
+<section id="sec-7-3" >
 
-<h2>Sources of IOCs</h2>
+<h3><span class="section-number-3">7.3</span> Sources of IOCs</h3>
 <p>
 ioc collection
 <a href="http://iocbucket.com">http://iocbucket.com</a>
@@ -492,9 +545,9 @@ Public blacklists/trackers could also be used as source:
 </section>
 </section>
 <section>
-<section id="sec-19" >
+<section id="sec-7-4" >
 
-<h2>where to mine IOC</h2>
+<h3><span class="section-number-3">7.4</span> where to mine IOC</h3>
 <ul class="org-ul">
 <li>passive HTTP (keep your data recorded)
 </li>
@@ -524,9 +577,9 @@ We implemented a whois service for IOC look-ups
 
 </section>
 <section>
-<section id="sec-20" >
+<section id="sec-7-5" >
 
-<h2>Mining IOCs from your own data</h2>
+<h3><span class="section-number-3">7.5</span> Mining IOCs from your own data</h3>
 <ul class="org-ul">
 <li>find and investigate incident
 </li>
@@ -544,9 +597,9 @@ We implemented a whois service for IOC look-ups
 </section>
 </section>
 <section>
-<section id="sec-21" >
+<section id="sec-7-6" >
 
-<h2>Example</h2>
+<h3><span class="section-number-3">7.6</span> Example</h3>
 <p>
 If event chain leads to compromise
 </p>
@@ -567,9 +620,9 @@ What to do?
 </section>
 </section>
 <section>
-<section id="sec-22" >
+<section id="sec-7-7" >
 
-<h2>Use YARA, or tune your own tools</h2>
+<h3><span class="section-number-3">7.7</span> Use YARA, or tune your own tools</h3>
 <div class="org-src-container">
 
 <pre class="src src-sh">rule susp_params_in_url_kind_of_fileless_bot_drive_by
@@ -595,9 +648,9 @@ What to do?
 </section>
 </section>
 <section>
-<section id="sec-23" >
+<section id="sec-7-8" >
 
-<h2>Use snort to catch suspicious traffic:</h2>
+<h3><span class="section-number-3">7.8</span> Use snort to catch suspicious traffic:</h3>
 <div class="org-src-container">
 
 <pre class="src src-sh"><span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">many plugX deployments connect to google DNS when not in use</span>
@@ -609,9 +662,35 @@ rev:1;)
 </section>
 </section>
 <section>
-<section id="sec-24" >
+<section id="sec-7-9" >
 
-<h2>Questions</h2>
+<h3><span class="section-number-3">7.9</span> IOC management portal</h3>
+<p>
+IOC management can be automated
+<img src="images/ioc01.png" alt="ioc01.png" />
+</p>
+</section>
+
+</section>
+<section>
+<section id="sec-7-10" >
+
+<h3><span class="section-number-3">7.10</span> and show nice graphs ;)</h3>
+<p>
+every manager loves graphs :p
+<img src="images/ioc02.png" alt="ioc02.png" />
+</p>
+</section>
+
+</section>
+<section id="sec-8" >
+
+<h2><span class="section-number-2">8</span> Questions</h2>
+</section>
+<section>
+<section id="sec-8-1" >
+
+<h3><span class="section-number-3">8.1</span> Q and A</h3>
 <p>
 Or contact us at &#x2026;
 </p>
