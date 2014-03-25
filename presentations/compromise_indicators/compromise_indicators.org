@@ -1,7 +1,7 @@
 #+Title: Incident Response tactics with Compromise Indicators
 #+Author: Vladimir Kropotov, Vitaly Chetvertakov, Fyodor Yarochkin\\\ RuCrypto 2014
 #+Email: 
-#+BEAMER_HEADER: 
+#+BEAMER_HEADER: \institute{Affilations:  Academia Sinica, o0o.nu, chroot.org}
 #+FILETAGS:
 #+LATEX_OPTIONS:
 #+LaTeX_CLASS: beamer
