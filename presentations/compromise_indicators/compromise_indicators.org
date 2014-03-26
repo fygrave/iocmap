@@ -49,14 +49,13 @@ indicates a computer intrusion.
 ** IOC workflow
 
 
-A typical flow with Indicators of Compromise allows
-to integrate dynamic threat intelligence into detection 
-process:
- #+ATTR_LATEX: :width 5cm
-[[file:images/ioc.png]]
-
+A typical flow with Indicators of Compromise:
+\tiny
 source: Sophisticated indicators for the modern threat landscape, 2012
 paper
+\normalsize
+ #+ATTR_LATEX: :width 8cm
+[[file:images/ioc.png]]
 
 * Standards
 ** Standards: OpenIOC

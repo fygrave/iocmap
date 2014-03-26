@@ -8,6 +8,8 @@ overlap=false;
 
         node [style=filled;
               shape=record;
+              fontsize=20.0;
+              
               ];
 
         initial->ioccreate;
@@ -18,7 +20,9 @@ overlap=false;
         analyze->newioc;
   //      newioc->repeat;
     //    repeat->ioccreate;
-    newioc->ioccreate [ label="rinse and repeat"];
+    newioc->ioccreate [ label="_rinse and repeat_";
+                       fontsize=25.0;
+                       fontcolor="red"];
     
 //        repeat [shape=record;   label="Rinse and Repeat"];
         initial [ label="Initial Detection"];
