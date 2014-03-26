@@ -252,14 +252,19 @@ taggerDomainFiles=domainbasedblacklists, tag, tag, tag
 
 ** Sources of IOCs
 
-ioc collection
+- ioc bucket:
 http://iocbucket.com
 
-Public blacklists/trackers could also be used as source:
+- Public blacklists/trackers could also be used as source:
 
 https://zeustracker.abuse.ch/blocklist.php?download=ipblocklist
 
 https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist
+
+- Eset IOC repository
+https://github.com/eset/malware-ioc
+
+more coming?
 
 ** where to mine IOC
 
@@ -337,6 +342,30 @@ rev:1;)
 
 #+END_SRC
 \normalsize
+** GRR: Google Rapid Response:
+
+http://code.google.com/p/grr/
+
+Hunting IOC artifacts with GRR
+
+[[file:images/grr.png]]
+
+** GRR: Creating rules
+*** creating rules
+  :PROPERTIES:
+  :BEAMER_col: 0.5
+  :END:
+[[file:images/grr03.png]]
+*** creating rules
+   :PROPERTIES:
+   :BEAMER_col: 0.5
+   :END:
+[[file:images/grr04.png]]
+
+** GRR: hunt in progress
+
+[[file:images/grr05.png]]
+
 ** IOC management portal
 #+ATTR_LATEX: :width 14cm
 [[file:images/ioc01.png]]

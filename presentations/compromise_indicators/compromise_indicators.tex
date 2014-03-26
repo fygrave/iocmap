@@ -1,4 +1,4 @@
-% Created 2014-03-26 Wed 15:18
+% Created 2014-03-26 Wed 18:41
 \documentclass[presentation,smaller]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -271,14 +271,25 @@ taggerDomainFiles=domainbasedblacklists, tag, tag, tag
 \end{lstlisting}
 \end{frame}
 \begin{frame}[label=sec-7-3]{Sources of IOCs}
-ioc collection
+\begin{itemize}
+\item ioc bucket:
+\end{itemize}
 \url{http://iocbucket.com}
 
-Public blacklists/trackers could also be used as source:
+\begin{itemize}
+\item Public blacklists/trackers could also be used as source:
+\end{itemize}
 
 \url{https://zeustracker.abuse.ch/blocklist.php?download=ipblocklist}
 
 \url{https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist}
+
+\begin{itemize}
+\item Eset IOC repository
+\end{itemize}
+\url{https://github.com/eset/malware-ioc}
+
+more coming?
 \end{frame}
 \begin{frame}[fragile,label=sec-7-4]{where to mine IOC}
  \begin{itemize}
@@ -362,11 +373,32 @@ rev:1;)
 \normalsize
 \end{frame}
 
-\begin{frame}[label=sec-7-9]{IOC management portal}
+\begin{frame}[label=sec-7-9]{GRR: Google Rapid Response:}
+\url{http://code.google.com/p/grr/}
+
+Hunting IOC artifacts with GRR
+
+\includegraphics[width=.9\linewidth]{images/grr.png}
+\end{frame}
+\begin{frame}[label=sec-7-10]{GRR: Creating rules}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\includegraphics[width=.9\linewidth]{images/grr03.png}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\includegraphics[width=.9\linewidth]{images/grr04.png}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[label=sec-7-11]{GRR: hunt in progress}
+\includegraphics[width=.9\linewidth]{images/grr05.png}
+\end{frame}
+\begin{frame}[label=sec-7-12]{IOC management portal}
 \includegraphics[width=14cm]{images/ioc01.png}
 \end{frame}
 
-\begin{frame}[fragile,label=sec-7-10]{IOC exportable to json}
+\begin{frame}[fragile,label=sec-7-13]{IOC exportable to json}
  \tiny
 \lstset{language=C,numbers=none}
 \begin{lstlisting}
@@ -392,7 +424,7 @@ rev:1;)
 \normalsize
 \end{frame}
 
-\begin{frame}[label=sec-7-11]{and every manager loves graphs :p}
+\begin{frame}[label=sec-7-14]{and every manager loves graphs :p}
 \includegraphics[width=14cm]{images/ioc02.png}
 \end{frame}
 
